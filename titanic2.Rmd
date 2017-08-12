@@ -1,0 +1,105 @@
+---
+title: "Titanic"
+author: "John Fortin"
+date: "7/31/2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(caret)
+library(mice)
+library(plyr)
+library(readr)
+library(parallel)
+library(doParallel)
+
+train_file = "train.csv"
+train_ds = read.csv(train_file, stringsAsFactors=FALSE )
+set.seed(50)
+
+```
+
+
+```{r}
+all_ds = train_ds
+
+all_ds$Fsize = all_ds$SibSp + all_ds$Parch + 1
+
+# Discretize family size
+all_ds$FsizeD[all_ds$Fsize == 1] <- 'singleton'
+all_ds$FsizeD[all_ds$Fsize < 5 & all_ds$Fsize > 1] <- 'small'
+all_ds$FsizeD[all_ds$Fsize > 4] <- 'large'
+
+embarked.na = which(all_ds$Embarked == '')
+all_ds$Embarked[embarked.na] =    
+    names(which.max(summary(as.factor(all_ds$Embarked))))
+all_ds$Embarked = factor(all_ds$Embarked)
+
+fares.na = which(is.na(all_ds$Fare))
+all_ds$Fare[fares.na] = mean(all_ds$Fare, na.rm=TRUE)
+
+all_ds$Salutation = gsub("(.*, )|(\\..*)",'',all_ds$Name)
+
+other = c('Dona', 'Lady', 'the Countess','Capt', 'Col', 'Don', 
+                'Dr', 'Major', 'Rev', 'Sir', 'Jonkheer')
+
+all_ds$Salutation[all_ds$Salutation == 'Mlle']        = 'Miss' 
+all_ds$Salutation[all_ds$Salutation == 'Ms']          = 'Miss'
+all_ds$Salutation[all_ds$Salutation == 'Mme']         =  'Mrs' 
+all_ds$Salutation[all_ds$Salutation %in% rare_title]  = 'Other'
+
+all_ds$Salutation = factor(all_ds$Salutation)
+
+mice_mod = mice(all_ds[, !names(all_ds) %in% c('PassengerId','Name','Ticket','Cabin','Survived')], method='rf') 
+
+mice_output = complete(mice_mod)
+all_ds$Age = mice_output$Age
+
+all_ds$Child = "Adult"
+all_ds$Child[all_ds$Age < 18] = "Child"
+
+all_ds$Child = factor(all_ds$Child)
+
+all_ds$Survived = factor(all_ds$Survived)
+all_ds$Sex = factor(all_ds$Sex)
+all_ds$Pclass = factor(all_ds$Pclass)
+all_ds$FsizeD = factor(all_ds$FsizeD)
+
+train_data = all_ds[1:600,]
+test_data = all_ds[601:891,]
+```
+
+
+
+
+
+
+```{r}
+
+cluster = makeCluster(detectCores() - 1) 
+registerDoParallel(cluster)
+fitControl = trainControl(method = "cv", 
+                          number = 10,
+                          allowParallel = TRUE)
+
+model_rf = train(Survived ~ +Pclass+Sex+Age+Fare+Embarked+FsizeD+Salutation+Child+Mother+Parch+SibSp,
+                  data=train_data, 
+                  method="rf", 
+                  trControl = fitControl)
+1
+stopCluster(cluster)
+registerDoSEQ()
+
+model_rf$finalModel
+
+```
+
+```{r}
+pred = predict(model_rf, test_data)
+pred
+
+test_data$Survived_pred = pred
+
+
+```
