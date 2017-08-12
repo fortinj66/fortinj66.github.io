@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Data Products Course Project</title>
+
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="generator" content="pandoc" />
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+
+  <base target="_blank">
+
+  <script type="text/javascript">
+    var SLIDE_CONFIG = {
+      // Slide settings
+      settings: {
+                title: 'Data Products Course Project',
+                        useBuilds: true,
+        usePrettify: true,
+        enableSlideAreas: true,
+        enableTouch: true,
+                      },
+
+      // Author information
+      presenters: [
+            {
+        name:  'John Fortin' ,
+        company: '',
+        gplus: '',
+        twitter: '',
+        www: '',
+        github: ''
+      },
+            ]
+    };
+  </script>
+
+  <link href="site_libs/ioslides-13.5.1/fonts/fonts.css" rel="stylesheet" />
+  <link href="site_libs/ioslides-13.5.1/theme/css/default.css" rel="stylesheet" />
+  <link href="site_libs/ioslides-13.5.1/theme/css/phone.css" rel="stylesheet" />
+  <script src="site_libs/ioslides-13.5.1/js/modernizr.custom.45394.js"></script>
+  <script src="site_libs/ioslides-13.5.1/js/prettify/prettify.js"></script>
+  <script src="site_libs/ioslides-13.5.1/js/prettify/lang-r.js"></script>
+  <script src="site_libs/ioslides-13.5.1/js/prettify/lang-yaml.js"></script>
+  <script src="site_libs/ioslides-13.5.1/js/hammer.js"></script>
+  <script src="site_libs/ioslides-13.5.1/js/slide-controller.js"></script>
+  <script src="site_libs/ioslides-13.5.1/js/slide-deck.js"></script>
+
+  <style type="text/css">
+
+    b, strong {
+      font-weight: bold;
+    }
+
+    em {
+      font-style: italic;
+    }
+
+    slides > slide {
+      -webkit-transition: all 0.4s ease-in-out;
+      -moz-transition: all 0.4s ease-in-out;
+      -o-transition: all 0.4s ease-in-out;
+      transition: all 0.4s ease-in-out;
+    }
+
+    .auto-fadein {
+      -webkit-transition: opacity 0.6s ease-in;
+      -webkit-transition-delay: 0.4s;
+      -moz-transition: opacity 0.6s ease-in 0.4s;
+      -o-transition: opacity 0.6s ease-in 0.4s;
+      transition: opacity 0.6s ease-in 0.4s;
+      opacity: 0;
+    }
+
+  </style>
+
+
+</head>
+
+<body style="opacity: 0">
+
+<slides>
+
+  <slide class="title-slide segue nobackground">
+        <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
+    <hgroup class="auto-fadein">
+      <h1 data-config-title><!-- populated from slide_config.json --></h1>
+      <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
+      <p data-config-presenter><!-- populated from slide_config.json --></p>
+            <p style="margin-top: 6px; margin-left: -2px;">8/12/2017</p>
+          </hgroup>
+  </slide>
+
+<slide class=''><hgroup><h2></h2></hgroup><article >
+
+<h4>Analyzing the Titanic Data Set</h4>
+
+<p>
+
+<p>An interesting way to explore and gain skill in Data Science is to explore the various datasets and competitions hosted at <a href='http://kaggle.com' title=''>http://kaggle.com</a>.</p>
+
+<p>
+
+<p>One dataset frequently used for analysis is the Titanic Survivor dataset used in the practice competition called &quot;Titanic: Machine Learning from Disaster&quot;</p>
+
+<p>
+
+<p>We will be looking at this dataset and its characteristics during this presentation.</p>
+
+<p>
+
+<p>The following page has the basic summary of the data for Passenger Class, Age, Sex, Family Size, Child, and Fare</p>
+
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article >
+
+<h4>Titanic Training Data Set Summary</h4>
+
+<pre >##  Pclass       Age            Sex            FsizeD      Child    
+##  1:216   Min.   : 0.42   female:314   large    : 62   Adult:748  
+##  2:184   1st Qu.:20.00   male  :577   singleton:537   Child:143  
+##  3:491   Median :28.00                small    :292              
+##          Mean   :29.44                                           
+##          3rd Qu.:37.50                                           
+##          Max.   :80.00                                           
+##       Fare       
+##  Min.   :  0.00  
+##  1st Qu.:  7.91  
+##  Median : 14.45  
+##  Mean   : 32.20  
+##  3rd Qu.: 31.00  
+##  Max.   :512.33</pre>
+
+<ul>
+<li>FsizeD: Family Size</li>
+<li>Pclass: Passenger Class</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article >
+
+<h4>Graphical Analysis</h4>
+
+<p>
+
+<p>A great way to get insight into a dataset is to graph various relationships between the parameters. For instance we might be interested in how a passengers age or fare impacted survival on the Titanic.</p>
+
+<p><img src="Course_Project_html_files/figure-html/unnamed-chunk-2-1.png" width="672" /><img src="Course_Project_html_files/figure-html/unnamed-chunk-2-2.png" width="672" /></p>
+
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article >
+
+<p>
+
+<p>The next stage for a data analysis would be to create prediction models for the data.</p>
+
+<p>
+
+<p>An interactive prediction model can be found at: <a href='https://fortinj66.shinyapps.io/data_products_course_project/' title=''>https://fortinj66.shinyapps.io/data_products_course_project/</a></p></article></slide>
+
+
+  <slide class="backdrop"></slide>
+
+</slides>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+<!-- map slide visiblity events into shiny -->
+<script>
+  (function() {
+    if (window.jQuery) {
+       window.jQuery(document).on('slideleave', function(e) {
+         window.jQuery(e.target).trigger('hidden');
+      });
+       window.jQuery(document).on('slideenter', function(e) {
+         window.jQuery(e.target).trigger('shown');
+      });
+    }
+  })();
+</script>
+
+</body>
+</html>

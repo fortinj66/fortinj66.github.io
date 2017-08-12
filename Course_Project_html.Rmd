@@ -12,7 +12,8 @@ train_ds = load_titanic_data()
 library(ggplot2)
 library(randomForest)
 ```
-----
+
+##
 
 #### Analyzing the Titanic Data Set
 <p>An interesting way to explore and gain skill in Data Science is to explore the various datasets and competitions hosted at http://kaggle.com.  
@@ -20,8 +21,6 @@ library(randomForest)
 <p>One dataset frequently used for analysis is the Titanic Survivor dataset used in the practice competition called "Titanic: Machine Learning from Disaster"
 
 <p>We will be looking at this dataset and its characteristics during this presentation.  
-
-<p>An interactive prediction model can be found at: https://fortinj66.shinyapps.io/data_products_course_project/
 
 <p>The following page has the basic summary of the data for Passenger Class, Age, Sex, Family Size, Child, and Fare
 
@@ -54,45 +53,8 @@ qplot(train_ds$PassengerId,
           ylab = "Fare"
           )
 ```
-<p>The next slide lets you choose and display the results.
 
 ----
+<p>The next stage for a data analysis would be to create prediction models for the data.
 
-#### Titanic Interactive Data plots
-```{r}
-
-inputPanel(
-    h4(),
-    radioButtons("y",
-                 "Y Axis Parameter:",
-                 c("Passenger Class" = "Pclass",
-                   "Age" = "Age",
-                   "Fare" = "Fare",
-                   "Family Size" = "FsizeD",
-                   "Sex" = "Sex",
-                   "Child" = "Child"),
-                 c("Age")
-    ),
-    radioButtons("color",
-                 "Color",
-                 c("Survived" = "Survived",
-                   "Passenger Class" = "Pclass",
-                   "Fare" = "Fare",
-                   "Family Size" = "FsizeD",
-                   "Sex" = "Sex",
-                   "Child" = "Child"),
-                 c("Survived")    )
-)
-
-renderPlot({
-    qplot(train_ds$PassengerId, 
-          train_ds[, input$y],
-          color=train_ds[, input$color],
-          xlab = "Passenger Id",
-          ylab = input$y
-          )
-}
-,width = 800, height = 275)
-```
-
-
+<p>An interactive prediction model can be found at: https://fortinj66.shinyapps.io/data_products_course_project/
